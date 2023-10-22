@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "215342272560",
+    "project_id": "hamging-dd902",
+    "storage_bucket": "hamging-dd902.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215342272560:android:5236e3b6484e4e3cfd1df5",
+        "android_client_info": {
+          "package_name": "com.example.flutter_block"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYij9IkP1C-MxGQPbR9Cyfyea-zqhDVb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
