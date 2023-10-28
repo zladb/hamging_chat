@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 
 import '../model/message.dart';
+import '../model/user.dart';
 import 'firebase_storage_service.dart';
 
 class FirebaseFirestoreService {
@@ -11,6 +12,7 @@ class FirebaseFirestoreService {
   static Future<void> addTextMessage({
     required String content,
     required String receiverId,
+    required UserModel receiver,
   }) async {
     // final auth = ref.read(firebaseAuthProvider)
     final message = Message(
@@ -20,14 +22,14 @@ class FirebaseFirestoreService {
       messageType: MessageType.text,
       senderId: FirebaseAuth.instance.currentUser!.uid,
     );
-    await _addMessageToChat(receiverId, message);
+    await _addMessageToChat(receiverId, receiver, message);
   }
 
   static Future<void> addImageMessage({
     required String receiverId,
+    required UserModel receiver,
     required Uint8List file,
   }) async {
-
     final image = await FirebaseStorageService.uploadImage(
         file, 'image/chat/${DateTime.now()}');
     final message = Message(
@@ -37,13 +39,21 @@ class FirebaseFirestoreService {
       sentTime: DateTime.now(),
       messageType: MessageType.image,
     );
-    await _addMessageToChat(receiverId, message);
+    await _addMessageToChat(receiverId, receiver, message);
   }
 
   static Future<void> _addMessageToChat(
     String receiverId,
+    UserModel receiver,
     Message message,
   ) async {
+    await firestore
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('chat')
+        .doc(receiverId)
+        .set(receiver.toJson());
+
     await firestore
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)

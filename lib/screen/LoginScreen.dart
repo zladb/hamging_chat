@@ -132,6 +132,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   email: username,
                   password: password,
                 );
+            ref.read(authProvider.notifier).putUserData();
             // user = await signInEmailAndPassword(
             //     email: username, password: password);
             print(user);
@@ -142,6 +143,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             }
 
             if (user != null) {
+              // user!.update
               showToast(fToast: fToast, text: '로그인 성공');
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const HomeScreen()));

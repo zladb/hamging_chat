@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_block/layout/default_layout.dart';
+import 'package:flutter_block/screen/navigation_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../component/custom_text_from_field.dart';
 import '../component/toast.dart';
@@ -26,7 +27,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     // WidgetsBinding.instance.addPostFrameCallback((_) {
     // });
     userName = ref.read(firebaseAuthProvider).currentUser?.displayName;
-
   }
 
   @override
@@ -36,10 +36,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     var user = ref.watch(firebaseAuthProvider).currentUser;
 
     // if (user != null) {}
@@ -52,9 +50,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     //     });
     //   }
     // });
-
-
-
 
     return DefaultLayout(
       title: 'chatting',
@@ -106,9 +101,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         userName = nicknameController.text;
                       });
                       if (user != null) {
-                        await user!.updateDisplayName(nicknameController.text);
+                        user!.updateDisplayName(nicknameController.text);
+                        await ref
+                            .read(authProvider.notifier)
+                            .updateUserName(name: nicknameController.text);
                         showToast(
-                            fToast: fToast, text: '내이름은 ${nicknameController.text} !');
+                            fToast: fToast,
+                            text: '내이름은 ${nicknameController.text} !');
                       }
                       if (!context.mounted) return;
                       Navigator.push(
@@ -117,6 +116,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               builder: (context) => const ChatsScreen()));
                     },
                     child: Text('이걸로 할래요!'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: PRIMARY_COLOR,
+                      padding: const EdgeInsets.all(20),
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  ElevatedButton(
+                    onPressed: () async {
+                      showToast(fToast: fToast, text: '내이름은 ${userName} !');
+                      if (!context.mounted) return;
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const NavigationScreen()));
+                    },
+                    child: Text('같은 이름으로 시작하기'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: PRIMARY_COLOR,
                       padding: const EdgeInsets.all(20),

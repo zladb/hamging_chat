@@ -11,7 +11,8 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       name: json['name'] as String,
       email: json['email'] as String,
       image: json['image'] as String,
-      lastActive: DateTime.parse(json['lastActive'] as String),
+      lastActive:
+          DataUtils.timeStampToDateTime(json['lastActive'] as Timestamp),
       isOnline: json['isOnline'] as bool? ?? false,
     );
 
@@ -20,6 +21,6 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'name': instance.name,
       'email': instance.email,
       'image': instance.image,
-      'lastActive': instance.lastActive.toIso8601String(),
+      'lastActive': DataUtils.dateTimeToTimeStamp(instance.lastActive),
       'isOnline': instance.isOnline,
     };

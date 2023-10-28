@@ -7,8 +7,10 @@ import '../provider/chat_provider.dart';
 import 'message_bubble.dart';
 
 class ChatMessages extends ConsumerStatefulWidget {
-  ChatMessages({super.key, required this.receiverId});
   final String receiverId;
+  ScrollController scrollController;
+
+  ChatMessages({super.key, required this.receiverId, required this.scrollController});
 
   @override
   ConsumerState<ChatMessages> createState() => _ChatMessagesState();
@@ -47,43 +49,71 @@ class _ChatMessagesState extends ConsumerState<ChatMessages> {
   //   ),
   // ];
 
-  late ChatModel state;
+  // ScrollController scrollController = ScrollController();
+
+  // late final ChatModel state;
+  // final state
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    ref.read(chatProvider.notifier).getMessage(widget.receiverId);
+    ref.read(chatProvider.notifier).getMessage(
+        receiverId: widget.receiverId, scrollController: widget.scrollController);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    // widget.scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    // ref.read(chatProvider.notifier).scrollDown(scrollController);
+    var state = ref.read(chatProvider) as ChatModel;
     print('build 실행');
-    final state = ref.read(chatProvider) as ChatModel;
     // var
     // print(state.messages?.isEmpty);
     if (state.messages != null) {
       print('state의 상태는? ! -> ${state.messages?.length}');
       return Expanded(
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: state!.messages!.length,
-          itemBuilder: (BuildContext context, int index) {
-            final isTextMessage =
-                state!.messages![index].messageType == MessageType.text;
-            final isMe = widget.receiverId != state!.messages![index].senderId;
-            return isTextMessage
-                ? MessageBubble(
-                    isMe: isMe,
-                    message: state!.messages![index],
-                    isImage: false,
-                  )
-                : MessageBubble(
-                    isMe: isMe,
-                    message: state.messages![index],
-                    isImage: true,
-                  );
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
           },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: ListView.separated(
+              physics : ClampingScrollPhysics(),
+              controller: widget.scrollController,
+              shrinkWrap: true,
+              itemCount: state!.messages!.length,
+              itemBuilder: (BuildContext context, int index) {
+                final isTextMessage =
+                    state!.messages![index].messageType == MessageType.text;
+                final isMe =
+                    widget.receiverId != state!.messages![index].senderId;
+                return isTextMessage
+                    ? MessageBubble(
+                        isMe: isMe,
+                        message: state!.messages![index],
+                        isImage: false,
+                      )
+                    : MessageBubble(
+                        isMe: isMe,
+                        message: state.messages![index],
+                        isImage: true,
+                      );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  height: 8,
+                );
+              },
+            ),
+          ),
         ),
       );
     } else {

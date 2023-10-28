@@ -9,31 +9,58 @@ import '../model/user.dart';
 final firebaseFiresotreProvider = Provider((ref) => FirebaseFirestore.instance);
 
 final fireStoreProvider =
-    StateNotifierProvider<FireStoreNotifier, List<UserModel>>((ref) {
+    StateNotifierProvider<FireStoreNotifier, UserBase>((ref) {
   final firebaseFirestore = ref.watch(firebaseFiresotreProvider);
   return FireStoreNotifier(firebaseFirestore: firebaseFirestore);
 });
 
-class FireStoreNotifier extends StateNotifier<List<UserModel>> {
+class FireStoreNotifier extends StateNotifier<UserBase> {
   final FirebaseFirestore firebaseFirestore;
+  final myUid = FirebaseAuth.instance.currentUser!.uid;
   List<UserModel> users = [];
 
-  FireStoreNotifier({required this.firebaseFirestore}) : super([]) {
-    getAllUsers();
+  FireStoreNotifier({required this.firebaseFirestore}) : super(UserLoading()) {
+    getUserChattedBefore();
   }
-  Future<List<UserModel>> getAllUsers() async {
-    print('getAllUsers 실행');
+  // Future<List<UserModel>> getAllUsers() async {
+  //   print('getAllUsers 실행');
+  //   await firebaseFirestore
+  //       .collection('users')
+  //       .snapshots(includeMetadataChanges: true)
+  //       .listen((users) {
+  //     this.users =
+  //         users.docs.map((doc) => UserModel.fromJson(doc.data())).toList();
+  //     this.users.removeWhere((item) => item.uid == myUid);
+  //     state = this.users;
+  //   });
+  //   // print(this.users)
+  //   print('get all users 잘 작동하나 ? -> ${this.users}');
+  //   return this.users;
+  // }
+
+  Future<List<UserModel>> getUserChattedBefore() async {
+    List<UserModel> temp = [];
+    print('getUserChattedBefore 실행');
     await firebaseFirestore
         .collection('users')
+        .doc(myUid)
+        .collection("chat")
         .snapshots(includeMetadataChanges: true)
-        .listen((users) {
-      this.users =
-          users.docs.map((doc) => UserModel.fromJson(doc.data())).toList();
-      state = this.users;
-    });
-    // print(this.users)
-    print('get all users 잘 작동하나 ? -> ${users}');
-    return this.users;
+        .listen(
+      (users) {
+        print("Successfully completed");
+        print('myUid ${myUid}');
+        print(users.size);
+        temp = users.docs.map((doc) => UserModel.fromJson(doc.data())).toList();
+
+        state = UserModelList(userList: temp);
+      },
+      onError: (e) {
+        state = UserError();
+        print("Error completing: $e");
+      },
+    );
+    return temp;
   }
 
   // void getAllUser() {

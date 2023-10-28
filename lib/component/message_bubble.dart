@@ -33,7 +33,7 @@ class MessageBubble extends StatelessWidget {
                     topLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30),
                   )),
-        margin: EdgeInsets.only(top: 10, right: 10, left: 10),
+        margin: EdgeInsets.only(right: 10, left: 10),
         padding: EdgeInsets.all(10),
         child: Column(
           mainAxisSize: MainAxisSize.min,

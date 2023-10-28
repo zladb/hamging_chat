@@ -23,6 +23,8 @@ class ChatScreen extends ConsumerStatefulWidget {
 }
 
 class _ChatScreenState extends ConsumerState<ChatScreen> {
+
+  ScrollController scrollController = ScrollController();
   // ChatBase user;
   @override
   void initState() {
@@ -32,6 +34,13 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     ref.read(chatProvider.notifier).getUserById(userId: widget.userId);
 
     // ref.read(chatProvider.notifier).getUserById(userId: widget.userId);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    scrollController.dispose();
+    super.dispose();
   }
 
   // Future<void> getUser() = {
@@ -59,9 +68,12 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
             children: [
               ChatMessages(
                 receiverId: widget.userId,
+                scrollController: scrollController,
               ),
               ChatTextField(
+                receiver: state.user,
                 receiverId: widget.userId,
+                scrollController: scrollController,
               ),
             ],
           ),

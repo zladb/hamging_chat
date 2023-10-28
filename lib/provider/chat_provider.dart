@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../model/chat_model.dart';
 import '../model/message.dart';
@@ -33,7 +34,9 @@ class ChatNotifier extends StateNotifier<ChatBase> {
     // return users;
   }
 
-  Future<void> getMessage(String receiverId) async {
+  Future<void> getMessage(
+      {required String receiverId,
+      required ScrollController scrollController}) async {
     List<Message> _messages;
     await firebaseFirestore
         .collection('users')
@@ -48,13 +51,22 @@ class ChatNotifier extends StateNotifier<ChatBase> {
           messages.docs.map((doc) => Message.fromJson(doc.data())).toList();
       final cState = state as ChatModel;
       print(_messages);
+      scrollDown(scrollController);
       state = cState.copyWith(messages: _messages);
     });
     // return _messages;
   }
 
-  // void scrollDown() =>
-  //     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-  //       if (scrollControllder.hasCilients) {}
-  //     });
+  void scrollDown(ScrollController scrollController) =>
+      WidgetsBinding.instance.addPostFrameCallback(
+        (timeStamp) {
+          if (scrollController.hasClients) {
+            scrollController.animateTo(
+              scrollController.position.maxScrollExtent,
+              duration: Duration(milliseconds: 400),
+              curve: Curves.ease,
+            );
+          }
+        },
+      );
 }

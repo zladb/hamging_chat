@@ -11,6 +11,7 @@ class CustomTextFormField extends StatelessWidget {
   final FormFieldValidator? validator;
   final ValueChanged<String>? onChanged;
   final bool isChat;
+  final GestureTapCallback? onTap;
 
   const CustomTextFormField({
     this.hintText,
@@ -22,6 +23,7 @@ class CustomTextFormField extends StatelessWidget {
     this.autofocus = false,
     this.isChat = false,
     required this.onChanged,
+    this.onTap,
     super.key,
   });
 
@@ -43,6 +45,7 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obscureText,
       keyboardType: keyboardType,
       maxLines: 1,
+      onTap: onTap,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(20),
         hintText: hintText,

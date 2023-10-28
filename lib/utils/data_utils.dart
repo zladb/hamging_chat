@@ -7,4 +7,9 @@ class DataUtils {
     DateTime myDateTime = value.toDate();
     return myDateTime;
   }
+
+  static Timestamp dateTimeToTimeStamp(DateTime value){
+    Timestamp myTimeStamp = Timestamp.fromDate(value);
+    return myTimeStamp;
+  }
 }
