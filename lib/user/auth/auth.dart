@@ -17,7 +17,7 @@ Future<User?> createEmailAndPassword(
         .createUserWithEmailAndPassword(email: email, password: password);
     if (_credential.user != null) {
       user = _credential.user!;
-      print("회원가입 성공! id: $email, password: $password");
+      // print("회원가입 성공! id: $email, password: $password");
       return user;
     } else {
       // showSnackbar(context, "Server Error");

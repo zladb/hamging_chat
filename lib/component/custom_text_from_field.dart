@@ -10,8 +10,10 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final FormFieldValidator? validator;
   final ValueChanged<String>? onChanged;
+  final ValueChanged<String>? onFieldSubmitted;
   final bool isChat;
   final GestureTapCallback? onTap;
+  final FocusNode? focusNode;
 
   const CustomTextFormField({
     this.hintText,
@@ -23,7 +25,9 @@ class CustomTextFormField extends StatelessWidget {
     this.autofocus = false,
     this.isChat = false,
     required this.onChanged,
+    this.onFieldSubmitted,
     this.onTap,
+    this.focusNode,
     super.key,
   });
 
@@ -38,6 +42,7 @@ class CustomTextFormField extends StatelessWidget {
     );
     return TextFormField(
       controller: controller,
+      focusNode: focusNode,
       cursorColor: PRIMARY_COLOR,
       autofocus: autofocus,
       onChanged: onChanged,
@@ -46,6 +51,7 @@ class CustomTextFormField extends StatelessWidget {
       keyboardType: keyboardType,
       maxLines: 1,
       onTap: onTap,
+      onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(20),
         hintText: hintText,

@@ -42,7 +42,7 @@ class AuthStateNotifier extends StateNotifier<UserBase> {
         state = UserLoading();
 
         if (user!.emailVerified) {
-          print('로그인 성공!\n id: $email, password: $password');
+          // print('로그인 성공!\n id: $email, password: $password');
           // showToast(fToast: fToast, text: '로그인 성공.');
           state = UserModel(
             uid: user.uid,

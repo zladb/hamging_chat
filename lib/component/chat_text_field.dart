@@ -26,28 +26,38 @@ class ChatTextField extends ConsumerStatefulWidget {
 
 class _ChatTextFieldState extends ConsumerState<ChatTextField> {
   final controller = TextEditingController();
+  late FocusNode myFocusNode;
   Uint8List? file;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    myFocusNode = FocusNode();
   }
 
   @override
   void dispose() {
     // controller.dispose();
+    myFocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+
     // final state = ref.watch(fireStoreProvider.notifier);
     return Row(
       children: [
         Expanded(
           child: CustomTextFormField(
+            autofocus: true,
+            focusNode: myFocusNode,
             isChat: true,
+            onFieldSubmitted: (String) {
+              _sendText(context);
+              myFocusNode.requestFocus();
+            },
             onTap: () async {
               Future.delayed(
                 Duration(milliseconds: 500),

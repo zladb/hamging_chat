@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_block/const/colors.dart';
 import 'package:flutter_block/screen/chats_screen.dart';
 import 'package:flutter_block/screen/search_screen.dart';
+import 'package:flutter_block/screen/user_page_screen.dart';
 
 import '../const/tabs.dart';
 
@@ -32,6 +33,7 @@ class _MainPageState extends State<NavigationScreen> with TickerProviderStateMix
   List pages = [
     ChatsScreen(),
     UserSearchScreen(),
+    UserPage(),
   ];
 
   @override

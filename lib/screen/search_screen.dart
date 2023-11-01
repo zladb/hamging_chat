@@ -62,6 +62,7 @@ class _UserSearchScreenState extends ConsumerState<UserSearchScreen> {
                   itemBuilder: (context, index) {
                     return UserItem(
                       user: userData![index],
+                      isSearch: true,
                     );
                   },
                 ),

@@ -68,7 +68,7 @@ class _ChatsScreenState extends ConsumerState<ChatsScreen> {
           ),
           physics: const BouncingScrollPhysics(),
           itemCount: users.userList!.length,
-          itemBuilder: (context, index) => UserItem(user: users.userList![index]),
+          itemBuilder: (context, index) => UserItem(user: users.userList![index], isSearch: false,),
         ),
       );
     }
