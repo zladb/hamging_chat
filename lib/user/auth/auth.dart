@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../component/toast.dart';
-import '../../provider/toast_provider.dart';
 
 final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 final fToast = FToast();
@@ -28,19 +27,19 @@ Future<User?> createEmailAndPassword(
     switch (error.code) {
       case "email-already-in-use":
         _errorCode = error.code;
-        print(error.code);
+        debugPrint(error.code);
         break;
       case "invalid-email":
         _errorCode = error.code;
-        print(error.code);
+        debugPrint(error.code);
         break;
       case "weak-password":
         _errorCode = error.code;
-        print(error.code);
+        debugPrint(error.code);
         break;
       case "operation-not-allowed":
         _errorCode = error.code;
-        print(error.code);
+        debugPrint(error.code);
         break;
       default:
         _errorCode = null;
@@ -50,6 +49,7 @@ Future<User?> createEmailAndPassword(
     }
     return null;
   }
+  return null;
 }
 
 Future<User?> signInEmailAndPassword(
@@ -64,8 +64,8 @@ Future<User?> signInEmailAndPassword(
 
     if (_credential.user != null) {
       user = _credential.user!;
-      if (user!.emailVerified) {
-        print('로그인 성공!\n id: $email, password: $password');
+      if (user.emailVerified) {
+        debugPrint('로그인 성공!\n id: $email, password: $password');
         // showToast(fToast: fToast, text: '로그인 성공.');
         return user;
       }
@@ -74,7 +74,7 @@ Future<User?> signInEmailAndPassword(
     }
   } on FirebaseAuthException catch (error) {
     String? _errorCode;
-    print(error.code);
+    debugPrint(error.code);
     switch (error.code) {
       case "invalid-email":
         showToast(fToast: fToast, text: '유효하지 않은 메일입니다.');
@@ -82,7 +82,7 @@ Future<User?> signInEmailAndPassword(
         break;
       case "user-disabled":
         showToast(fToast: fToast, text: '정지된 계정입니다.');
-        print('정지된 계정입니다.');
+        debugPrint('정지된 계정입니다.');
         _errorCode = error.code;
         break;
       // 아래의 케이스들은 보안상의 이유로 invalid-login-credentials로 통합됨
@@ -98,22 +98,23 @@ Future<User?> signInEmailAndPassword(
       //   break;
       case "invalid-login-credentials":
         showToast(fToast: fToast, text: '올바른 계정과 비밀번호인지 확인하세요.');
-        print("올바른 계정과 비밀번호인지 확인하세요.");
+        debugPrint("올바른 계정과 비밀번호인지 확인하세요.");
         _errorCode = error.code;
       case "too-many-requests":
         showToast(fToast: fToast, text: '너무 많은 요청입니다. 나중에 다시 시도하세요.');
-        print('너무 많은 요청이 들어왔습니다.');
+        debugPrint('너무 많은 요청이 들어왔습니다.');
         _errorCode = error.code;
       case "Unexpected null value":
-        print('예상 못한 null 값입니다.');
+        debugPrint('예상 못한 null 값입니다.');
       default:
         _errorCode = null;
     }
     if (_errorCode != null) {
-      print(_errorCode);
+      debugPrint(_errorCode);
     }
     return null;
   }
+  return null;
 }
 
 Future<User?> signUpWithVerifyEmailAndPassword(BuildContext context,
@@ -127,10 +128,10 @@ Future<User?> signUpWithVerifyEmailAndPassword(BuildContext context,
 
     if (_credential.user != null) {
       user = _credential.user!;
-      print("회원가입\nid: $email, password: $password");
+      debugPrint("회원가입\nid: $email, password: $password");
       return user;
     } else {
-      print("이미 가입된 회원입니다.");
+      debugPrint("이미 가입된 회원입니다.");
       return null;
     }
   } on FirebaseAuthException catch (error) {
@@ -153,6 +154,7 @@ Future<User?> signUpWithVerifyEmailAndPassword(BuildContext context,
         _errorCode = null;
     }
   }
+  return null;
 }
 
 void showSnackbar(context, String errorCode) {

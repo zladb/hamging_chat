@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_block/const/colors.dart';
 import 'package:flutter_block/service/firebase_firestore_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,9 +10,9 @@ import 'custom_text_from_field.dart';
 class ChatTextField extends ConsumerStatefulWidget {
   final String receiverId;
   final UserModel receiver;
-  ScrollController scrollController;
+  final ScrollController scrollController;
 
-  ChatTextField({
+  const ChatTextField({
     super.key,
     required this.receiverId,
     required this.receiver,
@@ -54,13 +53,13 @@ class _ChatTextFieldState extends ConsumerState<ChatTextField> {
             autofocus: true,
             focusNode: myFocusNode,
             isChat: true,
-            onFieldSubmitted: (String) {
+            onFieldSubmitted: (string) {
               _sendText(context);
               myFocusNode.requestFocus();
             },
             onTap: () async {
               Future.delayed(
-                Duration(milliseconds: 500),
+                const Duration(milliseconds: 500),
                 () => widget.scrollController.animateTo(
                   widget.scrollController.position.maxScrollExtent,
                   duration: const Duration(milliseconds: 350),
@@ -125,15 +124,15 @@ class _ChatTextFieldState extends ConsumerState<ChatTextField> {
     file = await imageManager.getImage();
 
     if (file != null) {
-      print('file 추가 시작');
+      debugPrint('file 추가 시작');
       await FirebaseFirestoreService.addImageMessage(
         receiverId: widget.receiverId,
         receiver: widget.receiver,
         file: file!,
       );
-      print('이미지 전송 완료!');
+      debugPrint('이미지 전송 완료!');
     } else {
-      print('이미지가 null 입니다.');
+      debugPrint('이미지가 null 입니다.');
     }
   }
 }

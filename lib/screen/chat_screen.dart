@@ -23,31 +23,19 @@ class ChatScreen extends ConsumerStatefulWidget {
 }
 
 class _ChatScreenState extends ConsumerState<ChatScreen> {
-
   ScrollController scrollController = ScrollController();
-  // ChatBase user;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    // getUser();
     ref.read(chatProvider.notifier).getUserById(userId: widget.userId);
-
-    // ref.read(chatProvider.notifier).getUserById(userId: widget.userId);
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     scrollController.dispose();
     super.dispose();
   }
-
-  // Future<void> getUser() = {
-  //    ref
-  //       .read(chatProvider.notifier)
-  //       .getUserById(userId: widget.userId);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +43,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
 
     if (state is ChatLoading) {
       ref.read(chatProvider.notifier).getUserById(userId: widget.userId);
-      return Scaffold(body: CircularProgressIndicator());
+      return const Scaffold(body: CircularProgressIndicator());
     }
     if (state is ChatError) {
       return Container();
@@ -112,12 +100,13 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                   children: [
                     CircleAvatar(
                       radius: 3,
-                      backgroundColor: widget.user.isOnline ? Colors.green: Colors.grey,
+                      backgroundColor:
+                          widget.user.isOnline ? Colors.green : Colors.grey,
                     ),
-                    SizedBox(width: 8,),
+                    const SizedBox(width: 8),
                     Text(
                       widget.user.isOnline ? 'Online' : 'Offline',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 14,
                       ),
@@ -134,13 +123,13 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
 
 Future<UserModel?> getUserById({required String userId}) async {
   final firebaseFirestore = FirebaseFirestore.instance;
-  UserModel? got_user;
-  await firebaseFirestore
+  UserModel? gotUser;
+  firebaseFirestore
       .collection('users')
       .doc(userId)
       .snapshots(includeMetadataChanges: true)
       .listen((user) {
-    got_user = UserModel.fromJson(user.data()!);
+    gotUser = UserModel.fromJson(user.data()!);
   });
-  return got_user;
+  return gotUser;
 }

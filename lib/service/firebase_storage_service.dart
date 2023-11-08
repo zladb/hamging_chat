@@ -3,7 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 class FirebaseStorageService {
   static Future<String> uploadImage(
-          Uint8List file, String storagePath) async =>
+      Uint8List file, String storagePath) async =>
       await FirebaseStorage.instance
           .ref()
           .child(storagePath)

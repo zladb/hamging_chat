@@ -25,6 +25,16 @@ class FirebaseFirestoreService {
     await _addMessageToChat(receiverId, receiver, message);
   }
 
+  static Future<String> saveUserImage({
+    required Uint8List file,
+  }) async {
+    var user = FirebaseAuth.instance.currentUser!.uid;
+    final image = await FirebaseStorageService.uploadImage(
+        file, 'image/user/${user}');
+    return image;
+  }
+
+
   static Future<void> addImageMessage({
     required String receiverId,
     required UserModel receiver,
@@ -43,10 +53,10 @@ class FirebaseFirestoreService {
   }
 
   static Future<void> _addMessageToChat(
-    String receiverId,
-    UserModel receiver,
-    Message message,
-  ) async {
+      String receiverId,
+      UserModel receiver,
+      Message message,
+      ) async {
     await firestore
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)

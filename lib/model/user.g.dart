@@ -14,6 +14,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       lastActive:
           DataUtils.timeStampToDateTime(json['lastActive'] as Timestamp),
       isOnline: json['isOnline'] as bool? ?? false,
+      comment: json['comment'] as String?,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -23,4 +24,5 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'image': instance.image,
       'lastActive': DataUtils.dateTimeToTimeStamp(instance.lastActive),
       'isOnline': instance.isOnline,
+      'comment': instance.comment,
     };

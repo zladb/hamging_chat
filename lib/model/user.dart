@@ -11,6 +11,8 @@ class UserNone extends UserBase {}
 
 class UserLoading extends UserBase {}
 
+class UserCreating extends UserBase {}
+
 class UserError extends UserBase {}
 
 class UserModelList extends UserBase {
@@ -32,6 +34,7 @@ class UserModel extends UserBase {
       toJson: DataUtils.dateTimeToTimeStamp)
   final DateTime lastActive;
   final bool isOnline;
+  final String? comment;
 
   UserModel({
     required this.uid,
@@ -40,6 +43,7 @@ class UserModel extends UserBase {
     required this.image,
     required this.lastActive,
     this.isOnline = false,
+    this.comment,
   });
 
   // // TODO(zladb): JsonSerializable하게 구현해보기
@@ -67,6 +71,7 @@ class UserModel extends UserBase {
     String? image,
     DateTime? lastActive,
     bool? isOnline,
+    String? comment,
   }) {
     return UserModel(
       uid: uid ?? this.uid,
@@ -75,6 +80,7 @@ class UserModel extends UserBase {
       image: image ?? this.image,
       lastActive: lastActive ?? this.lastActive,
       isOnline: isOnline ?? this.isOnline,
+      comment: comment ?? this.comment,
     );
   }
 }

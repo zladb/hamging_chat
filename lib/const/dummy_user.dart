@@ -1,6 +1,7 @@
 
 // 더미 유저 데이터
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../model/user.dart';
 
@@ -68,12 +69,12 @@ void putDummyData() {
 
 
   for (int i=0; i<userData.length; i++) {
-    print('하이');
+    debugPrint('하이');
     users.doc(userData[i].uid).set(userData[i].toJson());
   }
 
   userData.map((user) {
-    print('map 실행');
+    debugPrint('map 실행');
     return users.doc(user.uid).set(user.toJson());
   });
 }

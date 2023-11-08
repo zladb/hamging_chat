@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_block/const/colors.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -24,18 +23,17 @@ class _UserItemState extends State<UserItem> {
 
   @override
   Widget build(BuildContext context) {
-    print('user_item build 유저아이템 빌드 !');
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => widget.isSearch
               ? UserPage(
-                  user: widget.user,
-                )
+            user: widget.user,
+          )
               : ChatScreen(
-                  userId: widget.user.uid,
-                  user: widget.user,
-                ),
+            userId: widget.user.uid,
+            user: widget.user,
+          ),
         ),
       ),
       child: ListTile(
@@ -51,7 +49,7 @@ class _UserItemState extends State<UserItem> {
               padding: const EdgeInsets.only(bottom: 5.0),
               child: CircleAvatar(
                 backgroundColor:
-                    widget.user.isOnline ? Colors.green : Colors.grey,
+                widget.user.isOnline ? Colors.green : Colors.grey,
                 radius: 5,
               ),
             )

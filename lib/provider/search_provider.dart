@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../model/user.dart';
 import 'firebase_provider.dart';
 
 final userSearchProvider =
-    StateNotifierProvider<UserSearchNotifier, List<UserModel>>((ref) {
-  final firebaseFirestore = ref.watch(firebaseFiresotreProvider);
+StateNotifierProvider<UserSearchNotifier, List<UserModel>>((ref) {
+  final firebaseFirestore = ref.watch(firebaseFirestoreProvider);
   return UserSearchNotifier(firebaseFirestore: firebaseFirestore);
 });
 
@@ -19,20 +20,20 @@ class UserSearchNotifier extends StateNotifier<List<UserModel>> {
     getAllUsers();
   }
   Future<List<UserModel>> getAllUsers() async {
-    print('getAllUsers 실행');
-    await firebaseFirestore
+    debugPrint('getAllUsers 실행');
+    firebaseFirestore
         .collection('users')
         .snapshots(includeMetadataChanges: true)
         .listen((users) {
       this.users =
           users.docs.map((doc) => UserModel.fromJson(doc.data())).toList();
       this.users.removeWhere(
-          (item) => item.uid == FirebaseAuth.instance.currentUser!.uid);
+              (item) => item.uid == FirebaseAuth.instance.currentUser!.uid);
       state = this.users;
     });
     // print(this.users)
-    print('get all users 잘 작동하나 ? -> ${users}');
-    return this.users;
+    debugPrint('get all users 잘 작동하나 ? -> ${users}');
+    return users;
   }
 
   Future<List<UserModel>> searchUser({required String name}) async {
@@ -41,9 +42,9 @@ class UserSearchNotifier extends StateNotifier<List<UserModel>> {
         .where("name", isGreaterThanOrEqualTo: name.toUpperCase())
         .get();
 
-    var search_result =
-        snapshot.docs.map((doc) => UserModel.fromJson(doc.data())).toList();
-    state = search_result;
+    var searchResult =
+    snapshot.docs.map((doc) => UserModel.fromJson(doc.data())).toList();
+    state = searchResult;
     return state;
   }
 }

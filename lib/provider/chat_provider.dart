@@ -8,27 +8,29 @@ import '../model/user.dart';
 import 'firebase_provider.dart';
 
 final chatProvider = StateNotifierProvider<ChatNotifier, ChatBase>((ref) {
-  final firebaseFirestore = ref.watch(firebaseFiresotreProvider);
+  final firebaseFirestore = ref.watch(firebaseFirestoreProvider);
   return ChatNotifier(firebaseFirestore: firebaseFirestore);
 });
 
 class ChatNotifier extends StateNotifier<ChatBase> {
   final FirebaseFirestore firebaseFirestore;
-  // UserModel? users;
-  // List<Message> messages;
   ChatModel? chatModel;
 
-  ChatNotifier({required this.firebaseFirestore}) : super(ChatLoading()) {}
+  ChatNotifier({required this.firebaseFirestore}) : super(ChatLoading());
 
   Future<void> getUserById({required String userId}) async {
     UserModel _user;
-    await firebaseFirestore
+    firebaseFirestore
         .collection('users')
         .doc(userId)
         .snapshots(includeMetadataChanges: true)
         .listen((user) {
-      _user = UserModel.fromJson(user.data()!);
-      state = ChatModel(user: _user);
+          if (user==null){
+            return;
+          }else{
+            _user = UserModel.fromJson(user.data()!);
+            state = ChatModel(user: _user);
+          }
       // chatModel = state;
     });
     // return users;
@@ -36,9 +38,9 @@ class ChatNotifier extends StateNotifier<ChatBase> {
 
   Future<void> getMessage(
       {required String receiverId,
-      required ScrollController scrollController}) async {
+        required ScrollController scrollController}) async {
     List<Message> _messages;
-    await firebaseFirestore
+    firebaseFirestore
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('chat')
@@ -50,7 +52,7 @@ class ChatNotifier extends StateNotifier<ChatBase> {
       _messages =
           messages.docs.map((doc) => Message.fromJson(doc.data())).toList();
       final cState = state as ChatModel;
-      print(_messages);
+      debugPrint(_messages.toString());
       scrollDown(scrollController);
       state = cState.copyWith(messages: _messages);
     });
@@ -59,11 +61,11 @@ class ChatNotifier extends StateNotifier<ChatBase> {
 
   void scrollDown(ScrollController scrollController) =>
       WidgetsBinding.instance.addPostFrameCallback(
-        (timeStamp) {
+            (timeStamp) {
           if (scrollController.hasClients) {
             scrollController.animateTo(
               scrollController.position.maxScrollExtent,
-              duration: Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 400),
               curve: Curves.ease,
             );
           }

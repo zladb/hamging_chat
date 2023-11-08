@@ -1,4 +1,4 @@
-import 'package:flutter_block/screen/LoginScreen.dart';
+import 'package:flutter_block/screen/login_screen.dart';
 import 'package:go_router/go_router.dart';
 
 
@@ -9,7 +9,7 @@ final router = GoRouter(
     GoRoute(
         path: '/',
         builder: (context, state) {
-          return LoginScreen();
+          return const LoginScreen();
         }),
   ],
 );

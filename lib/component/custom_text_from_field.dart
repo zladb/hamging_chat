@@ -14,6 +14,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool isChat;
   final GestureTapCallback? onTap;
   final FocusNode? focusNode;
+  final bool? isSearch;
 
   const CustomTextFormField({
     this.hintText,
@@ -24,6 +25,7 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.autofocus = false,
     this.isChat = false,
+    this.isSearch,
     required this.onChanged,
     this.onFieldSubmitted,
     this.onTap,
@@ -34,9 +36,10 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final baseBorder = OutlineInputBorder(
-      borderRadius: isChat? BorderRadius.circular(30): BorderRadius.circular(5),
+      borderRadius:
+      isChat ? BorderRadius.circular(30) : BorderRadius.circular(5),
       borderSide: BorderSide(
-        color: isChat? BODY_TEXT_COLOR :INPUT_BORDER_COLOR,
+        color: isChat ? BODY_TEXT_COLOR : INPUT_BORDER_COLOR,
         width: 1.0,
       ),
     );
@@ -49,17 +52,17 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       obscureText: obscureText,
       keyboardType: keyboardType,
+      //
+      autovalidateMode: AutovalidateMode.always,
       maxLines: 1,
       onTap: onTap,
       onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(20),
+        contentPadding: const EdgeInsets.all(20),
         hintText: hintText,
         errorText: errorText,
-        hintStyle: TextStyle(
-          color: BODY_TEXT_COLOR,
-          fontSize: 14.0,
-        ),
+        hintStyle:
+        const TextStyle(color: BODY_TEXT_COLOR, fontSize: 14.0).copyWith(),
         fillColor: INPUT_BG_COLOR,
         filled: true,
         border: baseBorder,
@@ -68,8 +71,16 @@ class CustomTextFormField extends StatelessWidget {
           // borderSide: baseBorder.borderSide.copyWith(
           //   color: PRIMARY_COLOR,
           // ),
-          borderSide: BorderSide(color: PRIMARY_COLOR)
-        ),
+            borderSide: const BorderSide(color: PRIMARY_COLOR)),
+        prefixIcon: isSearch != null
+            ? const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          child: Icon(Icons.search, color: GREY),
+        )
+            : null,
+        prefixIconConstraints: isSearch != null
+            ? const BoxConstraints(minWidth: 0, minHeight: 0, maxWidth: 70)
+            : null,
       ),
     );
   }

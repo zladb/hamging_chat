@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_block/const/colors.dart';
 import 'package:flutter_block/screen/chats_screen.dart';
 import 'package:flutter_block/screen/search_screen.dart';
-import 'package:flutter_block/screen/user_page_screen.dart';
 
 import '../const/tabs.dart';
+import 'my_page_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
-  // final User? user;
   const NavigationScreen({super.key});
 
   @override
@@ -20,20 +19,18 @@ class _MainPageState extends State<NavigationScreen> with TickerProviderStateMix
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     controller = TabController(length: TABS.length, vsync: this);
     controller.addListener(() {
-      // 컨트롤의 상태가 변경될 때 마다 rebuild
       setState(() {});
     });
   }
 
   List pages = [
-    ChatsScreen(),
-    UserSearchScreen(),
-    UserPage(),
+    const ChatsScreen(),
+    const UserSearchScreen(),
+    const MyPageScreen(),
   ];
 
   @override

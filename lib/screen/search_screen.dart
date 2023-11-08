@@ -20,7 +20,6 @@ class _UserSearchScreenState extends ConsumerState<UserSearchScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     controller.dispose();
     super.dispose();
   }
@@ -29,8 +28,8 @@ class _UserSearchScreenState extends ConsumerState<UserSearchScreen> {
   Widget build(BuildContext context) {
     userData = ref.watch(userSearchProvider);
     if (userData == []) {
-      return CircularProgressIndicator();
-    } else
+      return const CircularProgressIndicator();
+    } else {
       return GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -41,10 +40,11 @@ class _UserSearchScreenState extends ConsumerState<UserSearchScreen> {
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: CustomTextFormField(
                   isChat: true,
                   controller: controller,
+                  isSearch: true,
                   onChanged: (String value) {
                     ref
                         .read(userSearchProvider.notifier)
@@ -71,5 +71,6 @@ class _UserSearchScreenState extends ConsumerState<UserSearchScreen> {
           ),
         ),
       );
+    }
   }
 }

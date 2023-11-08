@@ -8,9 +8,10 @@ import 'message_bubble.dart';
 
 class ChatMessages extends ConsumerStatefulWidget {
   final String receiverId;
-  ScrollController scrollController;
+  final ScrollController scrollController;
 
-  ChatMessages({super.key, required this.receiverId, required this.scrollController});
+  const ChatMessages(
+      {super.key, required this.receiverId, required this.scrollController});
 
   @override
   ConsumerState<ChatMessages> createState() => _ChatMessagesState();
@@ -59,7 +60,8 @@ class _ChatMessagesState extends ConsumerState<ChatMessages> {
     // TODO: implement initState
     super.initState();
     ref.read(chatProvider.notifier).getMessage(
-        receiverId: widget.receiverId, scrollController: widget.scrollController);
+        receiverId: widget.receiverId,
+        scrollController: widget.scrollController);
   }
 
   @override
@@ -73,11 +75,11 @@ class _ChatMessagesState extends ConsumerState<ChatMessages> {
   Widget build(BuildContext context) {
     // ref.read(chatProvider.notifier).scrollDown(scrollController);
     var state = ref.read(chatProvider) as ChatModel;
-    print('build 실행');
+    debugPrint('build 실행');
     // var
     // print(state.messages?.isEmpty);
     if (state.messages != null) {
-      print('state의 상태는? ! -> ${state.messages?.length}');
+      debugPrint('state의 상태는? ! -> ${state.messages?.length}');
       return Expanded(
         child: GestureDetector(
           onTap: () {
@@ -86,19 +88,19 @@ class _ChatMessagesState extends ConsumerState<ChatMessages> {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ListView.separated(
-              physics : ClampingScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
               controller: widget.scrollController,
               shrinkWrap: true,
-              itemCount: state!.messages!.length,
+              itemCount: state.messages!.length,
               itemBuilder: (BuildContext context, int index) {
                 final isTextMessage =
-                    state!.messages![index].messageType == MessageType.text;
+                    state.messages![index].messageType == MessageType.text;
                 final isMe =
-                    widget.receiverId != state!.messages![index].senderId;
+                    widget.receiverId != state.messages![index].senderId;
                 return isTextMessage
                     ? MessageBubble(
                         isMe: isMe,
-                        message: state!.messages![index],
+                        message: state.messages![index],
                         isImage: false,
                       )
                     : MessageBubble(
@@ -108,9 +110,7 @@ class _ChatMessagesState extends ConsumerState<ChatMessages> {
                       );
               },
               separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  height: 8,
-                );
+                return const SizedBox(height: 8);
               },
             ),
           ),

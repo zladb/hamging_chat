@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_block/const/colors.dart';
 import 'package:flutter_block/layout/default_layout.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,68 +15,60 @@ class ChatsScreen extends ConsumerStatefulWidget {
 }
 
 class _ChatsScreenState extends ConsumerState<ChatsScreen> {
-
-  // late List<UserModel> chat_list;
-
+  late UserBase state;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
-    // ref.read(fireStoreProvider.notifier).getAllUsers();
-    // chat_list = ref.read(fireStoreProvider.notifier).getUserChattedBefore();
-
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   ref.read(fireStoreProvider.notifier).getAllUsers();
-    // });
+    ref.read(fireStoreProvider.notifier).getUserChattedBefore();
+    state = ref.read(fireStoreProvider);
   }
-
 
   @override
   Widget build(BuildContext context) {
-    // ref.read(fireStoreProvider.notifier).putDummyData();
-    // ref.read(fireStoreProvider.notifier).getAllUser();
-    // final chat_list = ref.read(fireStoreProvider.notifier).getAllUsers();
-
-    // state = ref.watch(fireStoreProvider);
-    // ref.watch(fireStoreProvider.notifier).getAllUsers().then((value) => chat_list = value);
-    var state = ref.watch(fireStoreProvider);
+    state = ref.watch(fireStoreProvider);
 
     if (state is UserLoading) {
-      return Container(
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
+      return const Center(
+        child: CircularProgressIndicator(),
       );
-    }
-    else if (state is UserError){
+    } else if (state is UserError) {
       ref.read(fireStoreProvider.notifier).getUserChattedBefore();
-      return Container(
-        child: Center(
-          child: Text('ㄷㄷ 에러같은디요'),
-        ),
+      return const Center(
+        child: Text('에러입니다.'),
       );
-    }
-    else {
-      print(state);
+    } else {
       var users = state as UserModelList;
-      return DefaultLayout(
-        title: 'Chats',
-        child: ListView.separated(
-          separatorBuilder: (context, index) => const SizedBox(
-            height: 10,
+      if (users.userList.isEmpty) {
+        return const DefaultLayout(
+          title: 'Chats',
+          child: Center(
+            child: Text(
+              '아직 이야기를 나눈 사람이 없어요.\n대화를 시작해보세요!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+                color: GREY,
+              ),
+            ),
           ),
-          physics: const BouncingScrollPhysics(),
-          itemCount: users.userList!.length,
-          itemBuilder: (context, index) => UserItem(user: users.userList![index], isSearch: false,),
-        ),
-      );
+        );
+      } else {
+        return DefaultLayout(
+          title: 'Chats',
+          child: ListView.separated(
+            separatorBuilder: (context, index) => const SizedBox(
+              height: 10,
+            ),
+            physics: const BouncingScrollPhysics(),
+            itemCount: users.userList.length,
+            itemBuilder: (context, index) => UserItem(
+              user: users.userList[index],
+              isSearch: false,
+            ),
+          ),
+        );
+      }
     }
   }
-
-  // Future<List<UserModel>> get_user(Ref ref) async {
-  //   chat_list = ref.read(fireStoreProvider.notifier).getUserChattedBefore();
-  //   // return chat_list;
-  // }
 }
