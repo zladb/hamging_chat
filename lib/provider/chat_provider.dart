@@ -25,9 +25,10 @@ class ChatNotifier extends StateNotifier<ChatBase> {
         .doc(userId)
         .snapshots(includeMetadataChanges: true)
         .listen((user) {
-          if (user==null){
+          if (!user.exists){
             return;
           }else{
+            // print(user.data());
             _user = UserModel.fromJson(user.data()!);
             state = ChatModel(user: _user);
           }

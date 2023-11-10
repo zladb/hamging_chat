@@ -116,26 +116,38 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       children: [
         ElevatedButton(
           onPressed: () async {
-            UserModel? user;
+            UserBase user;
             debugPrint('로그인 시도');
             debugPrint('username => $username\npassword => $password');
-            user = await ref.read(authProvider.notifier).signInEmailAndPassword(
+            await ref.read(authProvider.notifier).signInEmailAndPassword(
                   email: username,
                   password: password,
                 );
-            if (user != null) {
+            user = ref.read(authProvider);
+            print(user.runtimeType);
+            // 유저 정보가 db에 존재하면?
+            if (user is UserModel) {
               showToast(fToast: fToast, text: '로그인 성공');
 
               if (!context.mounted) return;
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const NavigationScreen()));
-            } else {
+            }
+            // 로그인에는 성공했지만, 유저 정보가 db에 존재하지 않는다면?
+            else if (user is UserCreating) {
+              print(
+                'is this working?'
+              );
+              // setDefaultData() -> 유저 디폴트 정보를 UserModel에 담아서 state를 업데이트하고, db에 추가한다.
               user = ref.read(authProvider.notifier).setDefaultData();
               if (!context.mounted) return;
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => EditUserScreen(user: user!)));
+                      builder: (context) => EditUserScreen(user: user! as UserModel)));
+            }
+            else{
+
             }
           },
           style: ElevatedButton.styleFrom(

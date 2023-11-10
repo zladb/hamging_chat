@@ -98,7 +98,8 @@ class AuthStateNotifier extends StateNotifier<UserBase> {
         .get()
         .then((DocumentSnapshot user) {
       if (!user.exists) {
-        state = UserNone();
+        // state = UserNone();
+        state = UserCreating();
         return;
       } else {
         userData =

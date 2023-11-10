@@ -34,7 +34,7 @@ class FireStoreNotifier extends StateNotifier<UserBase> {
         .collection('users')
         .doc(myUid)
         .collection("chat")
-        .snapshots()
+        .snapshots(includeMetadataChanges: true)
         .listen(
       (users) {
         // debugPrint("listen 함수 실행");
