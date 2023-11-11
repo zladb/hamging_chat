@@ -9,12 +9,10 @@ import '../model/chat_model.dart';
 import '../provider/chat_provider.dart';
 
 class ChatScreen extends ConsumerStatefulWidget {
-  final String userId;
   final UserModel user;
 
   const ChatScreen({
     super.key,
-    required this.userId,
     required this.user,
   });
 
@@ -28,7 +26,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    ref.read(chatProvider.notifier).getUserById(userId: widget.userId);
+    ref.read(chatProvider.notifier).getUserById(userId: widget.user.uid);
   }
 
   @override
@@ -42,7 +40,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     final state = ref.watch(chatProvider);
 
     if (state is ChatLoading) {
-      ref.read(chatProvider.notifier).getUserById(userId: widget.userId);
+      ref.read(chatProvider.notifier).getUserById(userId: widget.user.uid);
       return const Scaffold(body: CircularProgressIndicator());
     }
     if (state is ChatError) {
@@ -55,12 +53,12 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
           child: Column(
             children: [
               ChatMessages(
-                receiverId: widget.userId,
+                receiverId: widget.user.uid,
                 scrollController: scrollController,
               ),
               ChatTextField(
                 receiver: state.user,
-                receiverId: widget.userId,
+                receiverId: widget.user.uid,
                 scrollController: scrollController,
               ),
             ],
@@ -73,51 +71,52 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
 
   AppBar _buildAppBar(ChatModel state) {
     return AppBar(
-        elevation: 0,
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.transparent,
-        title: Row(
-          children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(widget.user.image),
-              radius: 20,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.user.name,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+      elevation: 0,
+      foregroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
+      title: Row(
+        children: [
+          CircleAvatar(
+            backgroundImage: NetworkImage(widget.user.image),
+            radius: 20,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.user.name,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 3,
+                    backgroundColor:
+                        widget.user.isOnline ? Colors.green : Colors.grey,
                   ),
-                ),
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 3,
-                      backgroundColor:
-                          widget.user.isOnline ? Colors.green : Colors.grey,
+                  const SizedBox(width: 8),
+                  Text(
+                    widget.user.isOnline ? 'Online' : 'Offline',
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14,
                     ),
-                    const SizedBox(width: 8),
-                    Text(
-                      widget.user.isOnline ? 'Online' : 'Offline',
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
-                ),
-              ],
-            )
-          ],
-        ));
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
 

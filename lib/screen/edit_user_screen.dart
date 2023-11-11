@@ -50,27 +50,28 @@ class _EditUserScreenState extends ConsumerState<EditUserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // var user = ref.watch(firebaseAuthProvider).currentUser;
     var user = FirebaseAuth.instance.currentUser;
 
-
-    return DefaultLayout(
-      title: 'Edit User Profile',
-      actions: [
-        saveButton(user!),
-      ],
-      child: Form(
-        key: _editProfileFormKey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 22.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              editPhoto(),
-              userNameInput(),
-              const SizedBox(height: 8),
-              commentInput(),
-            ],
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: DefaultLayout(
+        title: 'Edit User Profile',
+        actions: [
+          saveButton(user!),
+        ],
+        child: Form(
+          key: _editProfileFormKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 22.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                editPhoto(),
+                userNameInput(),
+                const SizedBox(height: 8),
+                commentInput(),
+              ],
+            ),
           ),
         ),
       ),

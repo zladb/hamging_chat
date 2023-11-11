@@ -2,19 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_block/const/colors.dart';
 import 'package:flutter_block/layout/default_layout.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../model/user.dart';
-import 'chat_screen.dart';
 
 class UserPage extends ConsumerStatefulWidget {
   final UserModel user;
-  const UserPage({super.key, required this.user});
+
+  const UserPage({
+    super.key,
+    required this.user,
+  });
 
   @override
   ConsumerState<UserPage> createState() => _MyPageState();
 }
 
 class _MyPageState extends ConsumerState<UserPage> {
+
   @override
   void initState() {
     super.initState();
@@ -135,15 +140,7 @@ class _MyPageState extends ConsumerState<UserPage> {
     return ElevatedButton(
       onPressed: () async {
         if (!context.mounted) return;
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ChatScreen(
-              userId: widget.user.uid,
-              user: widget.user,
-            ),
-          ),
-        );
+        context.go('/chats/chat', extra: widget.user);
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: PRIMARY_COLOR,

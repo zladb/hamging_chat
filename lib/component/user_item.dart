@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_block/const/colors.dart';
+import 'package:go_router/go_router.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import '../model/user.dart';
-import '../screen/chat_screen.dart';
-import '../screen/user_page_screen.dart';
 
 class UserItem extends StatefulWidget {
   final UserModel user;
@@ -24,18 +23,10 @@ class _UserItemState extends State<UserItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => widget.isSearch
-              ? UserPage(
-            user: widget.user,
-          )
-              : ChatScreen(
-            userId: widget.user.uid,
-            user: widget.user,
-          ),
-        ),
-      ),
+      onTap: () => widget.isSearch ?
+      context.go('/search/user', extra: widget.user) :
+      context.go('/chats/chat', extra: widget.user), // push로 바꿀 수도 있음.
+
       child: ListTile(
         leading: Stack(
           alignment: Alignment.bottomRight,

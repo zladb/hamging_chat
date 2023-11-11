@@ -27,9 +27,8 @@ class FireStoreNotifier extends StateNotifier<UserBase> {
 
   Future<List<UserModel>> getUserChattedBefore() async {
     String myUid = me.uid;
-    // debugPrint('지금 uid 는? $myUid');
     List<UserModel> temp = [];
-    debugPrint('getUserChattedBefore 실행');
+    // debugPrint('getUserChattedBefore 실행');
     firebaseFirestore
         .collection('users')
         .doc(myUid)
@@ -37,9 +36,6 @@ class FireStoreNotifier extends StateNotifier<UserBase> {
         .snapshots(includeMetadataChanges: true)
         .listen(
       (users) {
-        // debugPrint("listen 함수 실행");
-        // debugPrint('firebaseProvider myUid ${myUid}');
-        // debugPrint(users.size.toString());
         temp = users.docs.map((doc) => UserModel.fromJson(doc.data())).toList();
 
         if(mounted) {

@@ -5,6 +5,7 @@ import 'package:flutter_block/screen/authentication_notice_screen.dart';
 import 'package:flutter_block/screen/login_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 
 import '../component/custom_text_from_field.dart';
 import '../const/colors.dart';
@@ -26,7 +27,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   void initState() {
     super.initState();
     fToast = FToast();
-    fToast.init(navigatorKey.currentContext!);
+    // fToast.init(navigatorKey.currentContext!);
   }
 
   final GlobalKey<FormState> _formKey = GlobalKey();
@@ -118,10 +119,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
                           if (user != null) {
                             if (!context.mounted) return;
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const AuthenticationNoticeScreen()));
+                            context.go('/register/notice');
                           }
                         }
                       },

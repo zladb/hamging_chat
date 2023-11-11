@@ -31,8 +31,6 @@ class UserSearchNotifier extends StateNotifier<List<UserModel>> {
               (item) => item.uid == FirebaseAuth.instance.currentUser!.uid);
       state = this.users;
     });
-    // print(this.users)
-    debugPrint('get all users 잘 작동하나 ? -> ${users}');
     return users;
   }
 

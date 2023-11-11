@@ -69,7 +69,6 @@ void putDummyData() {
 
 
   for (int i=0; i<userData.length; i++) {
-    debugPrint('하이');
     users.doc(userData[i].uid).set(userData[i].toJson());
   }
 

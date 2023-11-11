@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_block/const/colors.dart';
 import 'package:flutter_block/layout/default_layout.dart';
-import 'package:flutter_block/screen/edit_user_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 
 import '../component/custom_text_from_field.dart';
 import '../component/toast.dart';
 import '../main.dart';
 import '../model/user.dart';
 import '../provider/auth_provider.dart';
-import 'navigation_screen.dart';
-import 'register_screen.dart';
+import 'edit_user_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -21,12 +20,11 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
+  late FToast fToast;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   String username = '';
   String password = '';
-  late FToast fToast;
-  // late UserBase state;
 
   @override
   void initState() {
@@ -35,7 +33,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     fToast.init(navigatorKey.currentContext!);
     username = emailController.text;
     password = passwordController.text;
-    // state = ref.read(authProvider);
   }
 
   @override
@@ -124,27 +121,23 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   password: password,
                 );
             user = ref.read(authProvider);
-            print(user.runtimeType);
             // 유저 정보가 db에 존재하면?
             if (user is UserModel) {
               showToast(fToast: fToast, text: '로그인 성공');
 
               if (!context.mounted) return;
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const NavigationScreen()));
+                context.go('/chats');
             }
             // 로그인에는 성공했지만, 유저 정보가 db에 존재하지 않는다면?
             else if (user is UserCreating) {
-              print(
-                'is this working?'
-              );
-              // setDefaultData() -> 유저 디폴트 정보를 UserModel에 담아서 state를 업데이트하고, db에 추가한다.
+              // setDefaultData -> 유저 디폴트 정보를 UserModel에 담아서 state를 업데이트하고, db에 추가한다.
               user = ref.read(authProvider.notifier).setDefaultData();
               if (!context.mounted) return;
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => EditUserScreen(user: user! as UserModel)));
+              context.go('/my_page/edit_profile', extra: user);
+            //   Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //           builder: (context) => EditUserScreen(user: user! as UserModel)));
             }
             else{
 
@@ -159,10 +152,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         const SizedBox(height: 8.0),
         TextButton(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const RegisterScreen()));
+            context.go('/register');
           },
           style: ButtonStyle(
             overlayColor: MaterialStateProperty.resolveWith(
@@ -191,8 +181,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         Image.asset(
           'asset/img/hamging_dancing.png',
           // width: MediaQuery.of(context).size.width / 3 *2,
-          width: 300,
-          height: 300,
+          width: 250,
+          height: 250,
         ),
         const SizedBox(height: 16.0),
       ],

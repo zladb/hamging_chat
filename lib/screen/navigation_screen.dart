@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_block/const/colors.dart';
 import 'package:flutter_block/screen/chats_screen.dart';
@@ -8,13 +7,18 @@ import '../const/tabs.dart';
 import 'my_page_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
-  const NavigationScreen({super.key});
+  final Widget child;
+  const NavigationScreen({
+    required this.child,
+    super.key,
+  });
 
   @override
   State<NavigationScreen> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<NavigationScreen> with TickerProviderStateMixin {
+class _MainPageState extends State<NavigationScreen>
+    with TickerProviderStateMixin {
   late final TabController controller;
 
   @override
@@ -51,12 +55,12 @@ class _MainPageState extends State<NavigationScreen> with TickerProviderStateMix
         items: TABS
             .map(
               (e) => BottomNavigationBarItem(
-            icon: Icon(
-              e.icon,
-            ),
-            label: e.label,
-          ),
-        )
+                icon: Icon(
+                  e.icon,
+                ),
+                label: e.label,
+              ),
+            )
             .toList(),
       ),
     );

@@ -10,76 +10,35 @@ class ChatMessages extends ConsumerStatefulWidget {
   final String receiverId;
   final ScrollController scrollController;
 
-  const ChatMessages(
-      {super.key, required this.receiverId, required this.scrollController});
+  const ChatMessages({
+    super.key,
+    required this.receiverId,
+    required this.scrollController,
+  });
 
   @override
   ConsumerState<ChatMessages> createState() => _ChatMessagesState();
 }
 
 class _ChatMessagesState extends ConsumerState<ChatMessages> {
-  // final messages = [
-  //   Message(
-  //     senderId: '1',
-  //     receiverId: 'LAN2HQz0ZLWwVLqhklA5QkJKV472',
-  //     content: 'hi',
-  //     sentTime: DateTime.now(),
-  //     messageType: MessageType.text,
-  //   ),
-  //   Message(
-  //     senderId: 'LAN2HQz0ZLWwVLqhklA5QkJKV472',
-  //     receiverId: '1',
-  //     content: 'how are you?',
-  //     sentTime: DateTime.now(),
-  //     messageType: MessageType.text,
-  //   ),
-  //   Message(
-  //     senderId: '1',
-  //     receiverId: 'LAN2HQz0ZLWwVLqhklA5QkJKV472',
-  //     content: 'fine',
-  //     sentTime: DateTime.now(),
-  //     messageType: MessageType.text,
-  //   ),
-  //   Message(
-  //     senderId: '1',
-  //     receiverId: 'LAN2HQz0ZLWwVLqhklA5QkJKV472',
-  //     content:
-  //         'https://story.agar.kr/files/attach/images/2021/08/04/fe57136ed0c63de54b3c91149c4ba566.jpg',
-  //     sentTime: DateTime.now(),
-  //     messageType: MessageType.image,
-  //   ),
-  // ];
-
-  // ScrollController scrollController = ScrollController();
-
-  // late final ChatModel state;
-  // final state
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     ref.read(chatProvider.notifier).getMessage(
-        receiverId: widget.receiverId,
-        scrollController: widget.scrollController);
+          receiverId: widget.receiverId,
+          scrollController: widget.scrollController,
+        );
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
-    // widget.scrollController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // ref.read(chatProvider.notifier).scrollDown(scrollController);
     var state = ref.read(chatProvider) as ChatModel;
-    debugPrint('build 실행');
-    // var
-    // print(state.messages?.isEmpty);
     if (state.messages != null) {
-      debugPrint('state의 상태는? ! -> ${state.messages?.length}');
       return Expanded(
         child: GestureDetector(
           onTap: () {

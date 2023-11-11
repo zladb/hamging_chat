@@ -5,14 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../component/toast.dart';
+import '../main.dart';
 import '../model/user.dart';
-
-enum UserState {
-  none,
-  loading,
-  error,
-  user,
-}
 
 final firebaseAuthProvider = Provider((ref) => FirebaseAuth.instance);
 
@@ -29,6 +23,7 @@ class AuthStateNotifier extends StateNotifier<UserBase> {
 
   AuthStateNotifier({required this.firebaseAuth}) : super(UserNone()) {
     // firebaseAuth = FirebaseAuth.instance;
+    fToast.init(navigatorKey.currentContext!);
   }
 
   Future<UserModel?> signInEmailAndPassword(
@@ -40,7 +35,7 @@ class AuthStateNotifier extends StateNotifier<UserBase> {
           email: email, password: password);
 
       String myUid = FirebaseAuth.instance.currentUser!.uid;
-      debugPrint('login시 지금 uid 는? $myUid');
+      debugPrint('login uid -> $myUid');
       if (credential.user != null) {
         authUser = credential.user!;
         // 현재 유저
@@ -48,7 +43,7 @@ class AuthStateNotifier extends StateNotifier<UserBase> {
 
         if (authUser.emailVerified) {
           user = await getUserById(userId: authUser.uid);
-          debugPrint('로그인 함수내 타입 -> ${state.runtimeType}');
+          // debugPrint('로그인 함수내 타입 -> ${state.runtimeType}');
 
           return user;
         }
@@ -98,7 +93,6 @@ class AuthStateNotifier extends StateNotifier<UserBase> {
         .get()
         .then((DocumentSnapshot user) {
       if (!user.exists) {
-        // state = UserNone();
         state = UserCreating();
         return;
       } else {
@@ -188,7 +182,7 @@ class AuthStateNotifier extends StateNotifier<UserBase> {
       String? _errorCode;
       switch (error.code) {
         case "email-already-in-use":
-          showToast(fToast: fToast, text: '이미 가입된 회원입니다.');
+          // showToast(fToast: fToast, text: '이미 가입된 회원입니다.');
           _errorCode = error.code;
           break;
         case "invalid-email":

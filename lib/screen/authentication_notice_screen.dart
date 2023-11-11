@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_block/screen/login_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 
 import '../const/colors.dart';
 import '../layout/default_layout.dart';
 
 final fToast = FToast();
 
-class AuthenticationNoticeScreen extends StatelessWidget {
+class AuthenticationNoticeScreen extends StatefulWidget {
   const AuthenticationNoticeScreen({super.key});
 
+  @override
+  State<AuthenticationNoticeScreen> createState() => _AuthenticationNoticeScreenState();
+}
+
+class _AuthenticationNoticeScreenState extends State<AuthenticationNoticeScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
@@ -32,11 +38,12 @@ class AuthenticationNoticeScreen extends StatelessWidget {
     );
   }
 
-  Widget renderButton(context) {
+  Widget renderButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const LoginScreen()));
+        context.go('/login');
+        // Navigator.push(context,
+        //     MaterialPageRoute(builder: (context) => const LoginScreen()));
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: PRIMARY_COLOR,
