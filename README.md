@@ -57,7 +57,7 @@
 - 사진도 전송 가능합니다.
 - 한 번 채팅 시작하면 '채팅' 탭에서 채팅방을 확인할 수 있습니다.
 <img src="https://github.com/zladb/chatting_application/assets/68093782/bb26227a-0107-4de4-a188-47531c680fa4" width=30% />
-<img src="https://github.com/zladb/chatting_application/assets/68093782/c40d7330-17ed-4405-a9a8-e4c760f18aab" width=30% />
+<img src="https://github.com/zladb/chatting_application/assets/68093782/8d613d73-c18c-4f19-b1a5-64c055264354" width=30% />
 <img src="https://github.com/zladb/chatting_application/assets/68093782/e5699542-3f5c-4e8a-8880-1c17e442a18e" width=30% />
 
 
