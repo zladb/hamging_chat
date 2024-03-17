@@ -41,9 +41,11 @@
 
 **✔️ 유저 검색**
 - '유저 검색' 탭에 들어가면 hamging Chat을 사용하는 모든 유저 리스트를 볼 수 있습니다.
-- 이름을 검색해서 채팅을 시작합니다.
+- 유저의 이름을 검색해서 프로필을 확인할 수 있습니다.
+- 유저의 프로필에서 채팅을 시작할 수 있습니다.
 <img src="https://github.com/zladb/chatting_application/assets/68093782/8edc8b9d-531f-4856-a5a0-33576d67dbb6" width=30% />
 <img src="https://github.com/zladb/chatting_application/assets/68093782/39eee894-18a3-4ad4-b7e7-0f7b2da68bdb" width=30% />
+<img src="https://github.com/zladb/chatting_application/assets/68093782/aae5ee4c-0384-4cf1-88cc-0c98e825f531" width=30% />
 
 <br/>
 
