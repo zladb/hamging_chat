@@ -4,8 +4,8 @@ import 'package:flutter_block/layout/default_layout.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../model/user.dart';
-import '../provider/auth_provider.dart';
+import '../../../model/user.dart';
+import '../../../provider/auth_provider.dart';
 
 class MyPageScreen extends ConsumerStatefulWidget {
   const MyPageScreen({super.key});

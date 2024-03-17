@@ -1,17 +1,17 @@
-import 'package:flutter_block/screen/login_screen.dart';
+import 'package:flutter_block/screen/user/login/login_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../main.dart';
 import '../model/user.dart';
-import '../screen/authentication_notice_screen.dart';
-import '../screen/chat_screen.dart';
-import '../screen/chats_screen.dart';
-import '../screen/edit_user_screen.dart';
-import '../screen/my_page_screen.dart';
-import '../screen/navigation.dart';
-import '../screen/register_screen.dart';
-import '../screen/search_screen.dart';
-import '../screen/user_page_screen.dart';
+import '../screen/user/register/authentication_notice_screen.dart';
+import '../screen/chat/chat_screen.dart';
+import '../screen/chat/chats_screen.dart';
+import '../screen/user/mypage/edit_user_screen.dart';
+import '../screen/user/mypage/my_page_screen.dart';
+import '../screen/navigation/navigation.dart';
+import '../screen/user/register/register_screen.dart';
+import '../screen/search/search_screen.dart';
+import '../screen/user/mypage/user_page_screen.dart';
 
 final router = GoRouter(
   navigatorKey: navigatorKey,

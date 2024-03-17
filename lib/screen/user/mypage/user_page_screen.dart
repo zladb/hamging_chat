@@ -4,7 +4,7 @@ import 'package:flutter_block/layout/default_layout.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../model/user.dart';
+import '../../../model/user.dart';
 
 class UserPage extends ConsumerStatefulWidget {
   final UserModel user;
@@ -101,7 +101,7 @@ class _MyPageState extends ConsumerState<UserPage> {
               children: [
                 Icon(Icons.call),
                 SizedBox(width: 16),
-                Expanded(child: Text('+82 10 5525 1050')),
+                Expanded(child: Text('+82 10 1234 5678')),
                 SizedBox(width: 16),
                 Text('Mobile'),
               ],
@@ -125,7 +125,7 @@ class _MyPageState extends ConsumerState<UserPage> {
               children: [
                 Icon(Icons.message),
                 SizedBox(width: 16),
-                Expanded(child: Text('+82 10 5525 1050')),
+                Expanded(child: Text('+82 10 1234 5678')),
                 SizedBox(width: 16),
                 Text('Message'),
               ],

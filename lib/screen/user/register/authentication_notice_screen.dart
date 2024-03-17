@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_block/screen/login_screen.dart';
+import 'package:flutter_block/screen/user/login/login_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
-import '../const/colors.dart';
-import '../layout/default_layout.dart';
+import '../../../const/colors.dart';
+import '../../../layout/default_layout.dart';
 
 final fToast = FToast();
 

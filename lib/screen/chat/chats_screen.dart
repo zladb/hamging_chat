@@ -3,9 +3,9 @@ import 'package:flutter_block/const/colors.dart';
 import 'package:flutter_block/layout/default_layout.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../component/user_item.dart';
-import '../model/user.dart';
-import '../provider/firebase_provider.dart';
+import '../../component/user_item.dart';
+import '../../model/user.dart';
+import '../../provider/firebase_provider.dart';
 
 class ChatsScreen extends ConsumerStatefulWidget {
   const ChatsScreen({super.key});

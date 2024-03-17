@@ -3,8 +3,8 @@ import 'package:flutter_block/component/custom_text_from_field.dart';
 import 'package:flutter_block/layout/default_layout.dart';
 import 'package:flutter_block/provider/search_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../component/user_item.dart';
-import '../model/user.dart';
+import '../../component/user_item.dart';
+import '../../model/user.dart';
 
 class UserSearchScreen extends ConsumerStatefulWidget {
   const UserSearchScreen({super.key});

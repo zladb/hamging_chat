@@ -6,10 +6,10 @@ import 'package:flutter_block/const/colors.dart';
 import 'package:flutter_block/layout/default_layout.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../model/user.dart';
-import '../provider/auth_provider.dart';
-import '../service/firebase_firestore_service.dart';
-import '../utils/data_utils.dart';
+import '../../../model/user.dart';
+import '../../../provider/auth_provider.dart';
+import '../../../service/firebase_firestore_service.dart';
+import '../../../utils/data_utils.dart';
 
 class EditUserScreen extends ConsumerStatefulWidget {
   final UserModel user;

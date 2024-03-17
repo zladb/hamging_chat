@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../const/colors.dart';
-import '../const/tabs.dart';
+import '../../const/colors.dart';
+import '../../const/tabs.dart';
 
 class Navigation extends StatelessWidget {
   final Widget child;

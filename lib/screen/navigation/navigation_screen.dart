@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_block/const/colors.dart';
-import 'package:flutter_block/screen/chats_screen.dart';
-import 'package:flutter_block/screen/search_screen.dart';
+import 'package:flutter_block/screen/chat/chats_screen.dart';
+import 'package:flutter_block/screen/search/search_screen.dart';
 
-import '../const/tabs.dart';
-import 'my_page_screen.dart';
+import '../../const/tabs.dart';
+import '../user/mypage/my_page_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   final Widget child;

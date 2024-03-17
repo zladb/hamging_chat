@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_block/model/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../component/chat_messages.dart';
-import '../component/chat_text_field.dart';
-import '../model/chat_model.dart';
-import '../provider/chat_provider.dart';
+import '../../component/chat_messages.dart';
+import '../../component/chat_text_field.dart';
+import '../../model/chat_model.dart';
+import '../../provider/chat_provider.dart';
 
 class ChatScreen extends ConsumerStatefulWidget {
   final UserModel user;

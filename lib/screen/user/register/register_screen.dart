@@ -1,16 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_block/layout/default_layout.dart';
-import 'package:flutter_block/screen/authentication_notice_screen.dart';
-import 'package:flutter_block/screen/login_screen.dart';
+import 'package:flutter_block/screen/user/register/authentication_notice_screen.dart';
+import 'package:flutter_block/screen/user/login/login_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
-import '../component/custom_text_from_field.dart';
-import '../const/colors.dart';
-import '../main.dart';
-import '../provider/auth_provider.dart';
+import '../../../component/custom_text_from_field.dart';
+import '../../../const/colors.dart';
+import '../../../main.dart';
+import '../../../provider/auth_provider.dart';
 import 'package:email_validator/email_validator.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {

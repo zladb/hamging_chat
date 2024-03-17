@@ -5,12 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
-import '../component/custom_text_from_field.dart';
-import '../component/toast.dart';
-import '../main.dart';
-import '../model/user.dart';
-import '../provider/auth_provider.dart';
-import 'edit_user_screen.dart';
+import '../../../component/custom_text_from_field.dart';
+import '../../../component/toast.dart';
+import '../../../main.dart';
+import '../../../model/user.dart';
+import '../../../provider/auth_provider.dart';
+import '../mypage/edit_user_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
