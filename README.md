@@ -21,7 +21,6 @@
 <br/>
 
 **✔️ 회원가입 및 로그인**  
-<br/>
 - 실제 이메일로 회원가입을 진행합니다.
 - 이메일과 비밀번호를 입력하고 이메일로 전송된 인증 메일을 확인합니다.
 <img src="https://github.com/zladb/chatting_application/assets/68093782/792d3aab-f00c-45d2-867b-5643682d5933" width=30% />
@@ -29,9 +28,9 @@
 <img src="https://github.com/zladb/chatting_application/assets/68093782/18682943-812f-4ee7-af9e-d5e033303dca" width=30% />
 
 <br/>
+<br/>
 
 **✔️ 프로필 수정**
-<br/>
 - 첫 로그인 후 프로필을 설정합니다.
 - 원하는 사진과 이름, 자기소개를 입력합니다.
 - '마이페이지' 탭에서는 언제든지 프로필을 수정할 수 있습니다.
@@ -40,9 +39,9 @@
 <img src="https://github.com/zladb/chatting_application/assets/68093782/61805ac3-cfb7-4335-b09c-65525178620f" width=30% />
 
 <br/>
+<br/>
 
 **✔️ 유저 검색**
-<br/>
 - '유저 검색' 탭에 들어가면 hamging Chat을 사용하는 모든 유저 리스트를 볼 수 있습니다.
 - 유저의 이름을 검색해서 프로필을 확인할 수 있습니다.
 - 유저의 프로필에서 채팅을 시작할 수 있습니다.
@@ -51,9 +50,9 @@
 <img src="https://github.com/zladb/chatting_application/assets/68093782/aae5ee4c-0384-4cf1-88cc-0c98e825f531" width=30% />
 
 <br/>
+<br/>
 
 **✔️ 실시간 채팅**
-<br/>
 - 상대방에게 메세지를 보내보세요!
 - 사진도 전송 가능합니다.
 - 한 번 채팅 시작하면 '채팅' 탭에서 채팅방을 확인할 수 있습니다.
@@ -62,6 +61,7 @@
 <img src="https://github.com/zladb/chatting_application/assets/68093782/e5699542-3f5c-4e8a-8880-1c17e442a18e" width=30% />
 
 
+<br/>
 <br/>
 
 ## 🔧 Stack
