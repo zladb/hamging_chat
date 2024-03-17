@@ -1,5 +1,5 @@
 # Hamging Chat
----
+
 "" 이 프로젝트는 Flutter와 Firebase를 활용하여 개발한 실시간 채팅 애플리케이션입니다. Android, iOS, 웹 플랫폼에서 모두 동작하도록 설계되었습니다. 사용자들은 회원가입을 통해 계정을 생성하고 다른 사용자들과 채팅할 수 있습니다. 또한 프로필을 수정하고 다른 사용자를 검색하는 등의 기능도 포함되어 있습니다.
 
 ## 주요 기능
@@ -9,18 +9,14 @@
 3. 유저 검색: 다른 사용자를 검색하여 친구 추가 및 채팅을 시작할 수 있습니다.
 4. 실시간 채팅: 사용자는 실시간으로 메시지를 주고받을 수 있습니다.
 
-
 ## Hamging Chat 써보기
-- link -> https://zladb.github.io
-- 
+- link: https://zladb.github.io
 
----
 
 ### 개발 스택
 - Front-end: <img src="https://img.shields.io/badge/flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
 - Back-end:  <img src="https://img.shields.io/badge/firebase-#FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
-- 
-
+  
 
 ### 프로젝트 lib directory 구성
 
@@ -45,17 +41,10 @@ lib
   └─utils
 ```
 
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
- 
 ## Authors
 
 * **Yujin KIM** - 프로젝트 기획, 구상, 디자인, 개발, 배포, 관리 - [zladb](https://github.com/zladb)
+
 
 ## License
 
