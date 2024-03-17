@@ -24,28 +24,35 @@
 
 <img src="https://github.com/zladb/chatting_application/assets/68093782/792d3aab-f00c-45d2-867b-5643682d5933" width=30% />
 
-<img src="https://github.com/zladb/chatting_application/assets/68093782/1e5cb9f5-f606-44f4-a5cd-a9dc1753e045" width="300" />
+<img src="https://github.com/zladb/chatting_application/assets/68093782/1e5cb9f5-f606-44f4-a5cd-a9dc1753e045" width=30% />
 
-<img src="https://github.com/zladb/chatting_application/assets/68093782/18682943-812f-4ee7-af9e-d5e033303dca" width="300" />
-
-
-![login](https://github.com/zladb/chatting_application/assets/68093782/792d3aab-f00c-45d2-867b-5643682d5933){: width="300" height="300"}
-
-![register](https://github.com/zladb/chatting_application/assets/68093782/1e5cb9f5-f606-44f4-a5cd-a9dc1753e045)
-
-![인증페이지](https://github.com/zladb/chatting_application/assets/68093782/18682943-812f-4ee7-af9e-d5e033303dca)
-
-<br/>
-
-**실시간 채팅**
+<img src="https://github.com/zladb/chatting_application/assets/68093782/18682943-812f-4ee7-af9e-d5e033303dca" width=30% />
 
 <br/>
 
 **프로필 수정**
 
+<img src="https://github.com/zladb/chatting_application/assets/68093782/852a3c33-f164-45c7-a8ae-374aefef9d1e" width=30% />
+
+<img src="https://github.com/zladb/chatting_application/assets/68093782/7e5535d8-5d41-4d61-a348-34c445e54f36" width=30% />
+
+<img src="https://github.com/zladb/chatting_application/assets/68093782/61805ac3-cfb7-4335-b09c-65525178620f" width=30% />
+
 <br/>
 
 **유저 검색**
+
+<img src="https://github.com/zladb/chatting_application/assets/68093782/39eee894-18a3-4ad4-b7e7-0f7b2da68bdb" width=30% />
+<img src="https://github.com/zladb/chatting_application/assets/68093782/39eee894-18a3-4ad4-b7e7-0f7b2da68bdb" width=30% />
+
+<br/>
+
+**실시간 채팅**
+
+<img src="https://github.com/zladb/chatting_application/assets/68093782/bb26227a-0107-4de4-a188-47531c680fa4" width=30% />
+<img src="https://github.com/zladb/chatting_application/assets/68093782/c40d7330-17ed-4405-a9a8-e4c760f18aab" width=30% />
+<img src="https://github.com/zladb/chatting_application/assets/68093782/e5699542-3f5c-4e8a-8880-1c17e442a18e" width=30% />
+
 
 <br/>
 
