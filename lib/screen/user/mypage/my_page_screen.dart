@@ -166,7 +166,7 @@ class _Contacts extends StatelessWidget {
               children: [
                 Icon(Icons.call),
                 SizedBox(width: 16),
-                Expanded(child: Text('+82 10 5525 1050')),
+                Expanded(child: Text('+82 10 1234 5678')),
                 SizedBox(width: 16),
                 Text('Mobile'),
               ],
@@ -178,7 +178,7 @@ class _Contacts extends StatelessWidget {
               children: [
                 const Icon(Icons.mail),
                 const SizedBox(width: 16),
-                Expanded(child: Text(user.email)),
+                Expanded(child: Text('secret@gmail.com')),
                 const SizedBox(width: 16),
                 const Text('Email'),
               ],
@@ -190,7 +190,7 @@ class _Contacts extends StatelessWidget {
               children: [
                 Icon(Icons.message),
                 SizedBox(width: 16),
-                Expanded(child: Text('+82 10 5525 1050')),
+                Expanded(child: Text('+82 10 1234 5678')),
                 SizedBox(width: 16),
                 Text('Message'),
               ],

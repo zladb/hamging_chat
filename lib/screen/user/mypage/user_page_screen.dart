@@ -113,7 +113,7 @@ class _MyPageState extends ConsumerState<UserPage> {
               children: [
                 const Icon(Icons.mail),
                 const SizedBox(width: 16),
-                Expanded(child: Text(widget.user.email)),
+                Expanded(child: Text('secret@gmail.com')),
                 const SizedBox(width: 16),
                 const Text('Email'),
               ],
