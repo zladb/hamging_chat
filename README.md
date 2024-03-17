@@ -21,11 +21,10 @@
 <br/>
 
 **회원가입 및 로그인**  
-
+실제 이메일로 회원가입을 진행합니다.
+이메일과 비밀번호를 입력하고 이메일로 전송된 인증 메일을 확인합니다.
 <img src="https://github.com/zladb/chatting_application/assets/68093782/792d3aab-f00c-45d2-867b-5643682d5933" width=30% />
-
 <img src="https://github.com/zladb/chatting_application/assets/68093782/1e5cb9f5-f606-44f4-a5cd-a9dc1753e045" width=30% />
-
 <img src="https://github.com/zladb/chatting_application/assets/68093782/18682943-812f-4ee7-af9e-d5e033303dca" width=30% />
 
 <br/>
@@ -33,16 +32,14 @@
 **프로필 수정**
 
 <img src="https://github.com/zladb/chatting_application/assets/68093782/852a3c33-f164-45c7-a8ae-374aefef9d1e" width=30% />
-
 <img src="https://github.com/zladb/chatting_application/assets/68093782/7e5535d8-5d41-4d61-a348-34c445e54f36" width=30% />
-
 <img src="https://github.com/zladb/chatting_application/assets/68093782/61805ac3-cfb7-4335-b09c-65525178620f" width=30% />
 
 <br/>
 
 **유저 검색**
 
-<img src="https://github.com/zladb/chatting_application/assets/68093782/39eee894-18a3-4ad4-b7e7-0f7b2da68bdb" width=30% />
+<img src="https://github.com/zladb/chatting_application/assets/68093782/8edc8b9d-531f-4856-a5a0-33576d67dbb6" width=30% />
 <img src="https://github.com/zladb/chatting_application/assets/68093782/39eee894-18a3-4ad4-b7e7-0f7b2da68bdb" width=30% />
 
 <br/>
