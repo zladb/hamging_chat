@@ -19,8 +19,9 @@
 4. 실시간 채팅: 사용자는 실시간으로 메시지를 주고받을 수 있습니다.
 
 <br/>
-*** 회원가입 및 로그인 ***
-![login](https://github.com/zladb/chatting_application/assets/68093782/792d3aab-f00c-45d2-867b-5643682d5933)
+
+**회원가입 및 로그인**
+![login](https://github.com/zladb/chatting_application/assets/68093782/792d3aab-f00c-45d2-867b-5643682d5933){: width="300" height="300"}
 
 ![register](https://github.com/zladb/chatting_application/assets/68093782/1e5cb9f5-f606-44f4-a5cd-a9dc1753e045)
 
@@ -28,15 +29,15 @@
 
 <br/>
 
-*** 실시간 채팅 ***
+**실시간 채팅**
 
 <br/>
 
-*** 프로필 수정 ***
+**프로필 수정**
 
 <br/>
 
-*** 유저 검색 ***
+**유저 검색**
 
 <br/>
 
