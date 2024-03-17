@@ -22,7 +22,12 @@
 
 **회원가입 및 로그인**  
 
-<img src="https://github.com/zladb/chatting_application/assets/68093782/792d3aab-f00c-45d2-867b-5643682d5933" width="300" />
+<img src="https://github.com/zladb/chatting_application/assets/68093782/792d3aab-f00c-45d2-867b-5643682d5933" width=30% />
+
+<img src="https://github.com/zladb/chatting_application/assets/68093782/1e5cb9f5-f606-44f4-a5cd-a9dc1753e045" width="300" />
+
+<img src="https://github.com/zladb/chatting_application/assets/68093782/18682943-812f-4ee7-af9e-d5e033303dca" width="300" />
+
 
 ![login](https://github.com/zladb/chatting_application/assets/68093782/792d3aab-f00c-45d2-867b-5643682d5933){: width="300" height="300"}
 
