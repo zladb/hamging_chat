@@ -20,7 +20,10 @@
 
 <br/>
 
-**회원가입 및 로그인**
+**회원가입 및 로그인**  
+
+<img src="https://github.com/zladb/chatting_application/assets/68093782/792d3aab-f00c-45d2-867b-5643682d5933" width="650" height="400" />
+
 ![login](https://github.com/zladb/chatting_application/assets/68093782/792d3aab-f00c-45d2-867b-5643682d5933){: width="300" height="300"}
 
 ![register](https://github.com/zladb/chatting_application/assets/68093782/1e5cb9f5-f606-44f4-a5cd-a9dc1753e045)
